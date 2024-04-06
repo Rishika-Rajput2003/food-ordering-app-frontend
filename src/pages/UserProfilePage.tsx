@@ -1,7 +1,6 @@
 import { useGetMyUser, useUpdateMyUser } from '@/api/MyUserApi'
 import UserProfileForm from '@/forms/user-profile-form/UserProfileForm'
-import { User } from 'lucide-react'
-import React from 'react'
+
 
 const UserProfilePage=() =>  {
   const {currentUser, isLoading: isGetLoading}= useGetMyUser();

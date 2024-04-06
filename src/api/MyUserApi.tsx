@@ -117,13 +117,20 @@ export const useUpdateMyUser= () =>{
             },
             body: JSON.stringify(formData),
         });
-    }
+
+        if(!response.ok){
+            throw new Error("Failed to update user");
+        }
+
+        return response.json();
+    };
 
     const {mutateAsync: updateUser, 
         isLoading, 
         isSuccess,
         error,
-        reset,}= useMutation(updateMyUserRequest);
+        reset,
+    }= useMutation(updateMyUserRequest);
 
     if(isSuccess){
         toast.success("User profile updated!");
