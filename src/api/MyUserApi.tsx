@@ -1,4 +1,3 @@
-// import { User } from "@/types";
 import { User } from "@/types";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "react-query";
@@ -65,7 +64,7 @@ export const useCreateMyUser= ()=> {
                 throw new Error("Failed to create user");
             }
 
-            return response.json();
+            // return response.json();
         } catch (error) {
             console.log("error creating user", error);
             throw new Error("failed to create user");
