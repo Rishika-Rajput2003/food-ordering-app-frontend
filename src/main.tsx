@@ -29,4 +29,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </QueryClientProvider>
     </Router>
   </React.StrictMode>,
-)
+);

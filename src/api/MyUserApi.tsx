@@ -49,7 +49,7 @@ export const useCreateMyUser= ()=> {
     const {getAccessTokenSilently}= useAuth0();
 
     const createMyUserRequest= async (user: CreateUserRequest) =>{
-        try {
+        // try {
             const accessToken= await getAccessTokenSilently();
             const response= await fetch(`${API_BASE_URL}/api/my/user`, {
                 method: "POST",
@@ -63,13 +63,14 @@ export const useCreateMyUser= ()=> {
             if(!response.ok){
                 throw new Error("Failed to create user");
             }
-
-            // return response.json();
-        } catch (error) {
-            console.log("error creating user", error);
-            throw new Error("failed to create user");
+            console.log(response.json());
             
-        }
+            // return response.json();
+        // } catch (error) {
+        //     console.log("error creating user", error);
+        //     throw new Error("failed to create user");
+            
+        // }
     };
 
     const {
@@ -77,20 +78,22 @@ export const useCreateMyUser= ()=> {
         isLoading,
         isError,
         isSuccess,
-        error,
-    }= useMutation(createMyUserRequest, {
-        onError: (error: Error) => {
-            console.error("Mutation error:", error);
-            // Handle error from useMutation separately if needed
-        },
-    });
+        // error,
+    }= useMutation(createMyUserRequest
+    //     , {
+    //     onError: (error: Error) => {
+    //         console.error("Mutation error:", error);
+    //         // Handle error from useMutation separately if needed
+    //     },
+    // }
+    );
 
      return{
         createUser,
         isLoading,
         isError,
         isSuccess,
-        error,
+        // error,
     };
 };
 
