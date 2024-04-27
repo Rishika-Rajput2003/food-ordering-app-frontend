@@ -96,6 +96,7 @@ const SearchPage= () =>{
             />
 
             <div className="flex justify-between flex-col gap-3 lg:flex-row">
+                
                 <SearchResultsInfo 
                 total={results.pagination.total}
                 city={city}
