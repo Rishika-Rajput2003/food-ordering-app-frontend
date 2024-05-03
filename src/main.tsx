@@ -1,11 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './global.css'
-import { BrowserRouter as Router } from 'react-router-dom'
-import AppRoutes from './AppRoutes'
-import Auth0ProviderWithNavigate from './auth/Auth0ProviderWithNavigate'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { Toaster } from './components/ui/sonner'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './global.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './AppRoutes';
+import Auth0ProviderWithNavigate from './auth/Auth0ProviderWithNavigate';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Toaster } from './components/ui/sonner';
 
 const queryClient= new QueryClient({
   defaultOptions:{
@@ -17,7 +17,7 @@ const queryClient= new QueryClient({
 
 // meaning data won't automatically refetch when the window regains focus. This configuration ensures more control over when data is fetched in React Query.
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Router>
       {/* in order for auth to redirect to different pages it needs router so kept inside it */}
@@ -28,5 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </Auth0ProviderWithNavigate>
       </QueryClientProvider>
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

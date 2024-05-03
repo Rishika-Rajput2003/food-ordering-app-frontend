@@ -35,8 +35,9 @@ const UsernameMenu= ()=>{
 
                 <DropdownMenuItem>
                     <Button 
+                    onClick={() => logout()}
                     className="flex flex-1 font-bold bg-orange-500"
-                    onClick={() => logout()}>
+                    >
                         Log Out
                     </Button>
                 </DropdownMenuItem>
@@ -44,7 +45,7 @@ const UsernameMenu= ()=>{
             </DropdownMenuContent>
 
         </DropdownMenu>
-    )
-}
+    );
+};
 
 export default UsernameMenu;

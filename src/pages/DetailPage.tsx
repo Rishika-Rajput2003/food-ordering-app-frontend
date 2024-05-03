@@ -8,15 +8,15 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardFooter } from "@/components/ui/card";
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
 import { MenuItem  } from "@/types";
-import { useState } from "react";
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export type CartItem= {
     _id: string;
     name: string;
     price: number;
     quantity: number;
-}
+};
 
 const DetailPage= () => {
     const {restaurantId}= useParams();
@@ -24,16 +24,35 @@ const DetailPage= () => {
 
     const {createCheckoutSession, isLoading: isCheckoutLoading}= useCreateCheckoutSession();
 
-    const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-        const storedCartItems= sessionStorage.getItem(`cartItems-${restaurantId}`);
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    
+    // (() => {
+    //     const storedCartItems= sessionStorage.getItem(`cartItems-${restaurantId}`);
+
+    //     console.log(storedCartItems);
         
-        return storedCartItems ? JSON.parse(storedCartItems) : [];
-    });
+    //     return storedCartItems ? JSON.parse(storedCartItems) : []; 
+    // });
+
+    useEffect(() => {
+        const storedCartItems = sessionStorage.getItem(`cartItems-${restaurantId}`);
+        console.log(storedCartItems);
+        
+        if (storedCartItems) {
+          setCartItems(JSON.parse(storedCartItems));
+        }
+      }, [restaurantId]);
+    
+      const saveCartItemsToStorage = (items: CartItem[]) => {
+        sessionStorage.setItem(`cartItems-${restaurantId}`, JSON.stringify(items));
+        console.log(items);
+      };
+
 
     const addToCart= (menuItem: MenuItem)=> {
         setCartItems((prevCartItems) => {
             // 1. check if item is already in the cart
-            const existingCartItem= prevCartItems.find((cartItem) => cartItem._id === menuItem._id)
+            const existingCartItem= prevCartItems.find((cartItem) => cartItem._id === menuItem._id);
 
             let updatedCartItems;
 
@@ -57,9 +76,15 @@ const DetailPage= () => {
             }
 
             // store in session memory so when user reloads then menuitems data wont disappear
-            sessionStorage.setItem(`
-            cartItems-${restaurantId}`,
-            JSON.stringify(updatedCartItems));
+            // sessionStorage.setItem(`
+            // cartItems-${restaurantId}`,
+            // JSON.stringify(updatedCartItems));
+
+            setCartItems(updatedCartItems);
+            saveCartItemsToStorage(updatedCartItems);
+
+            console.log(updatedCartItems);
+            
 
             // 3. if item is not in the cart, add as new item
             return updatedCartItems;
@@ -73,9 +98,12 @@ const DetailPage= () => {
                 (item) => cartItem._id !==item._id
             );
 
-            sessionStorage.setItem(`
-            cartItems-${restaurantId}`,
-            JSON.stringify(updatedCartItems));
+            // sessionStorage.setItem(`
+            // cartItems-${restaurantId}`,
+            // JSON.stringify(updatedCartItems));
+
+            setCartItems(updatedCartItems);
+            saveCartItemsToStorage(updatedCartItems);
 
             return updatedCartItems;
         });
@@ -98,11 +126,11 @@ const DetailPage= () => {
                 addressLine1: userFromData.addressLine1,
                 city: userFromData.city,
                 country: userFromData.country,
-                email: userFromData.email as string
-            }
+                email: userFromData.email as string,
+            },
         };
 
-        const data= await createCheckoutSession(checkoutData)
+        const data= await createCheckoutSession(checkoutData);
         window.location.href= data.url;
         // takes data to stripe
     };

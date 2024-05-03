@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 type Props= {
     total: number;
     city: string;
-}
+};
 
 const SearchResultsInfo = ({total, city}: Props)=>{
     return (
@@ -18,7 +18,7 @@ const SearchResultsInfo = ({total, city}: Props)=>{
             </span>
             
         </div>
-    )
-}
+    );
+};
 
 export default SearchResultsInfo;

@@ -93,7 +93,7 @@ const CuisineFilter= ({
             </Button>
         </div>
         </>
-    )
+    );
 };
 
 export default CuisineFilter;

@@ -29,7 +29,7 @@ const RestaurantInfo= ({restaurant}: Props)=> {
             </CardContent>
             
         </Card>
-    )
-}
+    );
+};
 
 export default RestaurantInfo;

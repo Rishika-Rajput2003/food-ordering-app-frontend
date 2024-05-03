@@ -9,21 +9,26 @@ export const useGetMyUser= () =>{
     const {getAccessTokenSilently}= useAuth0();
 
     const getMyUserRequest= async():Promise<User> =>{
-        const accessToken= await getAccessTokenSilently();
-
-        const response= await fetch(`${API_BASE_URL}/api/my/user`, {
-            method: "GET",
-            headers:{
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json",
-            },
-        });
-
-        if(!response.ok){
-            throw new Error("Failed to fetch user");
+        try {
+            const accessToken= await getAccessTokenSilently();
+    
+            const response= await fetch(`${API_BASE_URL}/api/my/user`, {
+                method: "GET",
+                headers:{
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                },
+            });
+    
+            if(!response.ok){
+                throw new Error("Failed to fetch user");
+            }
+    
+            return response.json();
+        } catch (error) {
+            toast.error((error as Error).toString());
+            throw error; // Rethrow the error to be handled by the caller
         }
-
-        return response.json();
     };
 
     const {data: currentUser,
@@ -31,11 +36,11 @@ export const useGetMyUser= () =>{
         error,
     }= useQuery("fetchCurrentUser", getMyUserRequest);
 
-    if(error){
-        toast.error(error.toString());
-    }
+    // if(error){
+    //     toast.error(error.toString());
+    // }
 
-    return {currentUser, isLoading};
+    return {currentUser, isLoading, error};
 };
 
 
@@ -49,7 +54,7 @@ export const useCreateMyUser= ()=> {
     const {getAccessTokenSilently}= useAuth0();
 
     const createMyUserRequest= async (user: CreateUserRequest) =>{
-        // try {
+        try {
             const accessToken= await getAccessTokenSilently();
             const response= await fetch(`${API_BASE_URL}/api/my/user`, {
                 method: "POST",
@@ -63,14 +68,14 @@ export const useCreateMyUser= ()=> {
             if(!response.ok){
                 throw new Error("Failed to create user");
             }
-            console.log(response.json());
+            // console.log(response.json());
             
-            // return response.json();
-        // } catch (error) {
-        //     console.log("error creating user", error);
-        //     throw new Error("failed to create user");
+            return response.json();
+        } catch (error) {
+            console.log("error creating user", error);
+            throw new Error("failed to create user");
             
-        // }
+        }
     };
 
     const {
@@ -102,29 +107,34 @@ type UpdateMyUserRequest= {
     addressLine1: string;
     city: string;
     country: string;
-}
+};
 
 export const useUpdateMyUser= () =>{
     const {getAccessTokenSilently}= useAuth0();
 
     const updateMyUserRequest= async (formData: UpdateMyUserRequest) =>{
 
-        const accessToken= await getAccessTokenSilently();
-
-        const response = await fetch(`${API_BASE_URL}/api/my/user`, {
-            method: "PUT",
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        });
-
-        if(!response.ok){
-            throw new Error("Failed to update user");
+        try {
+            const accessToken= await getAccessTokenSilently();
+    
+            const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+    
+            if(!response.ok){
+                throw new Error("Failed to update user");
+            }
+    
+            return response.json();
+        } catch (error) {
+            toast.error((error as Error).toString());
+            throw error;
         }
-
-        return response.json();
     };
 
     const {mutateAsync: updateUser, 
@@ -146,5 +156,5 @@ export const useUpdateMyUser= () =>{
     return {
         updateUser,
         isLoading,
-    }
-}
+    };
+};

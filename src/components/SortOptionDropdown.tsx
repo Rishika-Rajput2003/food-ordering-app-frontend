@@ -19,7 +19,7 @@ const SORT_OPTIONS= [
         label: "Estimated Delivery Time",
         value: "estimatedDeliveryTime"
     },
-]
+];
 
 const SortOptionDropdown= ({onChange, sortOption}: Props) => {
 
@@ -43,7 +43,7 @@ const SortOptionDropdown= ({onChange, sortOption}: Props) => {
                 ))}
             </DropdownMenuContent>
         </DropdownMenu>
-    )
+    );
 };
 
 export default SortOptionDropdown;

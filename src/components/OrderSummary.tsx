@@ -21,7 +21,7 @@ const OrderSummary= ({restaurant, cartItems, removeFromCart}: Props) => {
         const totalDelivery= totalInPaise + restaurant.deliveryPrice;
 
         return (totalDelivery/100).toFixed(2);
-    }
+    };
 
     return (
         <>

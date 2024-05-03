@@ -1,5 +1,5 @@
-import { useGetMyUser, useUpdateMyUser } from '@/api/MyUserApi'
-import UserProfileForm from '@/forms/user-profile-form/UserProfileForm'
+import { useGetMyUser, useUpdateMyUser } from '@/api/MyUserApi';
+import UserProfileForm from '@/forms/user-profile-form/UserProfileForm';
 
 
 const UserProfilePage=() =>  {
@@ -8,11 +8,11 @@ const UserProfilePage=() =>  {
 
   // console.log(currentUser);
   if(isGetLoading){
-    return <span>Loading...</span>
+    return <span>Loading...</span>;
   }
 
   if(!currentUser){
-    return <span>Unable to load user profile</span>
+    return <span>Unable to load user profile</span>;
   }
   
   
@@ -24,6 +24,6 @@ const UserProfilePage=() =>  {
   isLoading= {isUpdateLoading} />
   );
   
-}
+};
 
 export default UserProfilePage;

@@ -42,7 +42,7 @@ const PaginationSelector= ({page, pages, onPageChange}: Props)=> {
                 )}
             </PaginationContent>
         </Pagination>
-    )
+    );
 };
 
 export default PaginationSelector;

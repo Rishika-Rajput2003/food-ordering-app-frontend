@@ -10,7 +10,7 @@ type Props= {
     onCheckout: (userFormData: UserFormData)=> void;
     disabled: boolean;
     isLoading: boolean;
-}
+};
 
 const CheckoutButton= ({onCheckout,disabled, isLoading }: Props)=> {
     const {
@@ -31,10 +31,10 @@ const CheckoutButton= ({onCheckout,disabled, isLoading }: Props)=> {
     };
 
     if(!isAuthenticated){
-        return <Button 
+        return (<Button 
         onClick={onLogin}
         className="bg-orange-500 flex-1"> 
-        Login to Checkout</Button>
+        Login to Checkout</Button>);
     }
 
     if(isAuthLoading || !currentUser || isLoading){
@@ -60,8 +60,7 @@ const CheckoutButton= ({onCheckout,disabled, isLoading }: Props)=> {
 
             </DialogContent>
         </Dialog>
-    )
-
+    );
 };
 
 export default CheckoutButton;
