@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# HungerHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to HungerHub, your one-stop solution for ordering food online. With HungerHub, you can easily search for restaurants in different locations, browse through their menus, and place orders conveniently from the comfort of your home.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Search and Sort**: Easily find restaurants by searching in different locations. Sort your search results by best match, delivery price, or estimated delivery time.
+  
+- **Filter by Cuisine**: Narrow down your search results by filtering restaurants based on cuisines.
 
-## Expanding the ESLint configuration
+- **Restaurant Details**: View detailed information about each restaurant, including its image, name, location, and menu items. You can also manage your cart directly from the restaurant page.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Simple Checkout Process**: Add menu items to your cart and proceed to checkout. Pay securely using your card through Stripe. Please note that you need to be logged in to complete the checkout process.
 
-- Configure the top-level `parserOptions` property like this:
+- **Order Status Tracking**: After placing your order, track its status on the order status page. From awaiting restaurant confirmation to out for delivery and delivered, stay informed about the progress of your order.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **User Authentication**: Log in easily using your username and password or through your Google account.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Profile Management**: Update your profile information as needed to ensure a personalized experience.
+
+- **Restaurant Management**: Own a restaurant? Create and manage your restaurant's orders seamlessly by accessing the "Manage Restaurants" tab.
+
+## Getting Started
+
+1. **Sign Up/Login**: Create an account or log in to HungerHub.
+2. **Search for Restaurants**: Use the search feature to find restaurants in your desired locations.
+3. **Browse and Order**: Explore restaurant details, add items to your cart, and proceed to checkout.
+4. **Payment**: Pay securely using your card through Stripe.
+5. **Track Your Order**: Monitor the status of your order on the order status page.
+6. **Enjoy Your Meal**: Sit back and relax while your delicious food is on its way!
+
+## Technologies Used
+
+### Frontend
+
+- **Framework:** React 
+- **Type Checking:** TypeScript
+- **Build Tool:** Vite
+
+### Backend
+
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose
+- **File Uploads**: Multer with Cloudinary integration
+- **Authentication**: OAuth2 with JWT bearer tokens
+- **Payment Processing**: Stripe
+
+## Live Site 
+You can access the live site of HungerHub at the following link:
+
+https://food-ordering-app-frontend-kgwh.onrender.com
+
+## Frontend GitHub Repository
+
+https://github.com/Rishika-Rajput2003/food-ordering-app-frontend/
+
+## Backend GitHub Repository 
+
+https://github.com/Rishika-Rajput2003/food-ordering-app-backend
